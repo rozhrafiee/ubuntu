@@ -60,4 +60,31 @@ class Folder:
 
     def write(self ,text):
         self.__content += text
+class Windows:
+
+    current_address = ["root"]
+
+
+    def regex(self ,address):
+        if re.search("^(/[^/ ]*)+/?$" ,address) != None:
+            self.path_type = "abs"
+        if re.search("^(?!-)[a-z0-9-]+(?<!-)(/(?!-)[a-z0-9-]+(?<!-))*(/(?!-\.)[a-z0-9-\.]+(?<!-\.))?$" ,address) != None:
+            self.path_type = "rel"
+        return False
+    
+
+    def save(self):
+        with open('win_data.pkl', 'wb') as otp:
+            pickle.dump(self.root , otp)
+
+
+    def load(self):
+        try:
+            with open('win_data.pkl', 'rb') as inp:
+                data = pickle.load(inp)
+            self.root = data
+        except:
+            self.root = Folder("/root")
+
+
 
