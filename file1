@@ -1,0 +1,28 @@
+import pickle
+import re
+import copy
+
+class File:
+
+    def __init__(self ,address) -> None:
+        self.__name = address[-1]
+        self.__address = address
+        self.__content = ""
+
+    
+    def set_address(self ,address):
+        self.__address = address
+
+    def get_name(self):
+        return self.__name
+
+    def get_address(self):
+        return self.__address
+
+
+    def show(self):
+        print(self.__content)
+
+    def write(self ,text):
+        self.__content += text
+
